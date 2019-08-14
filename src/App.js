@@ -1,7 +1,13 @@
 import React from 'react';
-
-// import { Container } from './styles';
+import { Router } from 'react-router-dom';
+import Routes from './routes';
+import history from './services/history';
+import './config/Reactotron';
 
 export default function App() {
-  return <div />;
+  return (
+    <Router history={history}>
+      <Routes />
+    </Router>
+  );
 }
