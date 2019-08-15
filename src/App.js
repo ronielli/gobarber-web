@@ -1,13 +1,20 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import Routes from './routes';
-import history from './services/history';
-import './config/Reactotron';
+
+import history from '~/services/history';
+import '~/config/Reactotron';
+import store from './store';
+import GlobalStyle from '~/styles/global';
 
 export default function App() {
   return (
-    <Router history={history}>
-      <Routes />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Routes />
+        <GlobalStyle />
+      </Router>
+    </Provider>
   );
 }
