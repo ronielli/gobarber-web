@@ -1,9 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import logo from '~/assets/logo.svg';
-// import { Container } from './styles';
+import { signUpRequest } from '~/store/modules/auth/actions';
+
 const schema = Yup.object().shape({
   email: Yup.string()
     .email('Insira um e-mail Valido')
@@ -11,11 +13,12 @@ const schema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'No minimo 6 caracteres')
     .required('password obrigatório'),
-  nome: Yup.string().required('o Nome é Obrigatorios'),
+  name: Yup.string().required('o Nome é Obrigatorios'),
 });
 export default function Signin() {
-  function handleSubmit(data) {
-    console.tron.log(data);
+  const dispatch = useDispatch();
+  function handleSubmit({ name, email, password }) {
+    dispatch(signUpRequest(name, email, password));
   }
   return (
     <>
@@ -28,7 +31,9 @@ export default function Signin() {
           type="password"
           placeholder="Sua Senha Secreta"
         />
-        <button type="submit">Criar conta</button>
+        <button onClick={handleSubmit} type="submit">
+          Criar conta
+        </button>
         <Link to="/">Já tenho Login</Link>
       </Form>
     </>

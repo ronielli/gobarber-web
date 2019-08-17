@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { signInRequest } from '~/store/modules/auth/actions';
@@ -13,6 +13,7 @@ const schema = Yup.object().shape({
   password: Yup.string().required('password obrigatório'),
 });
 export default function Signin() {
+  const loading = useSelector(state => state.auth.loading);
   const dispatch = useDispatch();
 
   function handleSubmit({ email, password }) {
@@ -28,7 +29,7 @@ export default function Signin() {
           type="password"
           placeholder="Sua Senha Secreta"
         />
-        <button type="submit">Acessat</button>
+        <button type="submit">{loading ? 'Carregar...' : 'Acessar'}</button>
         <Link to="/register">Criar sua conta Gratuitamente</Link>
       </Form>
     </>
