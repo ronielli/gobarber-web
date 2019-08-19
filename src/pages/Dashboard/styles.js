@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { borderRadius } from 'polished';
 
 export const Container = styled.div`
   max-width: 600px;
-  margin: 50px auto;
+  margin: 5px auto;
   display: flex;
   flex-direction: column;
   header {
@@ -29,17 +28,19 @@ export const Container = styled.div`
   }
 `;
 export const Time = styled.li`
-  padding: 20px;
+  padding: 5px;
   border-radius: 4px;
   background: #fff;
-  opacity:${props => (props.past ? 0.6 : 1)};
+  opacity: ${props => (props.past ? 0.5 : 1)};
   strong {
     display: block;
     color: ${props => (props.available ? '#999' : '#7959c1')};
     font-size: 20px;
     font-weight: normal;
   }
-  span{display:block;
-  margin-top:3px;
-  color:${props => (props.available ? '#999' : '#7959c1')}
+  span {
+    display: block;
+    margin-top: 3px;
+    color: ${props => (props.available ? '#999' : '#7959c1')};
+  }
 `;
